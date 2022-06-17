@@ -1,0 +1,49 @@
+
+  <h1 mat-dialog-title>Contractor Form</h1>
+  <div mat-dialog-content >
+    <form [formGroup]="contractorForm">
+      <div class="example-container">
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstName" matInput placeholder="Ex. Nougat">
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="lastName" matInput placeholder="Ex. Nougat">
+          </mat-form-field>
+        </div>
+  
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>User name</mat-label>
+            <input formControlName="userName" matInput placeholder="Ex. Nougat">
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input formControlName="userPassword" matInput placeholder="Ex. Nougat">
+          </mat-form-field>
+        </div>
+  
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput placeholder="Ex. Nougat">
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Phone number</mat-label>
+            <input formControlName="phoneNumber" matInput placeholder="Ex. Nougat">
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div mat-dialog-actions >
+    <button mat-raised-button color="warn" mat-dialog-close>close</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="addContractor()">submit</button> 
+  </div>
+ 

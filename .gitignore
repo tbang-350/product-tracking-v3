@@ -19,6 +19,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.angular
 
 # Visual Studio Code
 .vscode/*
@@ -37,6 +38,11 @@ yarn-error.log
 testem.log
 /typings
 
+
 # System files
 .DS_Store
 Thumbs.db
+
+
+/src/assets/plugins
+/src/assets/dist
