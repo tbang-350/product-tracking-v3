@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FloatLabelType, MatFormFieldControl } from '@angular/material/form-field';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
@@ -13,16 +13,30 @@ import Swal from 'sweetalert2';
 export class AddContractorComponent implements OnInit {
 
  contractorForm!: FormGroup;
+ actionBtn: string = "Save";
 
  constructor(
-  private formBuilder: FormBuilder,
+  @Inject(MAT_DIALOG_DATA) public editData: any,
   private userService: UserService,
   private dialogRef: MatDialogRef<AddContractorComponent>
   ){}
 
   ngOnInit(): void {
-       this.FormConfiguration()
+       this.FormConfiguration();
+       console.log(this.editData);
+
+      if(this.editData){
+        this.actionBtn = "Update";
+        this.contractorForm.controls['firstName'].setValue(this.editData.firstName);
+        this.contractorForm.controls['lastName'].setValue(this.editData.lastName);
+        this.contractorForm.controls['userName'].setValue(this.editData.userName);
+        this.contractorForm.controls['userPassword'].setValue(this.editData.userPassword);
+        this.contractorForm.controls['email'].setValue(this.editData.email);
+        this.contractorForm.controls['phoneNumber'].setValue(this.editData.phoneNumber);
+      }
   }
+
+  
 
   FormConfiguration(){
     this.contractorForm = new FormGroup({
@@ -35,31 +49,61 @@ export class AddContractorComponent implements OnInit {
     })
   }
 
+  
+
   addContractor(){
-    console.log(this.contractorForm.value);
-    if(this.contractorForm.valid){
-      this.userService.createContractor(this.contractorForm.value).subscribe({
-        next:(res) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Contractor added',
-            showConfirmButton: false,
-            timer: 1500
-          });
-          this.contractorForm.reset();
-          this.dialogRef.close('save');
-        },error:() =>{
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Something went wrong',
-            showConfirmButton: false,
-            timer: 1500
-          });
-        }
-      })
+    if(!this.editData){
+      if(this.contractorForm.valid){
+        this.userService.createContractor(this.contractorForm.value).subscribe({
+          next:(res) => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Contractor added',
+              showConfirmButton: false,
+              timer: 1500
+            });
+            this.contractorForm.reset();
+            this.dialogRef.close('save');
+          },error:() =>{
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Something went wrong',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
+      }
+    }else{
+      this.updateContractor();
     }
+  }
+
+  updateContractor(){
+    console.log(this.contractorForm.value)
+    this.userService.update(this.contractorForm.value).subscribe({
+      next: (res) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Contractor updated',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.contractorForm.reset();
+        this.dialogRef.close('update');
+      },error:() =>{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Something went wrong',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    })
   }
 
 }

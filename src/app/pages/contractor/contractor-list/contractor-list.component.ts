@@ -16,10 +16,10 @@ import Swal from 'sweetalert2';
 })
 export class ContractorListComponent implements OnInit {
 
-  
+
 
   data: any;
-  columnsToDisplay = [ 'firstName', 'lastName', 'userName', 'email', 'phoneNumber'];
+  columnsToDisplay = ['firstName', 'lastName', 'userName', 'email', 'phoneNumber', 'action'];
 
   // filteredData: any;
 
@@ -33,13 +33,13 @@ export class ContractorListComponent implements OnInit {
     this.getContractors();
   }
 
-  getContractors(){
+  getContractors() {
     this.userservice.getContractors().subscribe(x => {
       // this.filteredData = x;
       this.data = new MatTableDataSource<User>(x);
       this.data.sort = this.sort;
       this.data.paginator = this.paginator;
-      
+
       console.log(this.data);
     })
   }
@@ -53,18 +53,31 @@ export class ContractorListComponent implements OnInit {
     }
   }
 
-  addData(){
-    this.dialog.open(AddContractorComponent,{
+  addData() {
+    this.dialog.open(AddContractorComponent, {
       width: '30%'
     }).afterClosed().subscribe(val => {
-      if(val === 'save'){
+      if (val === 'save') {
         this.getContractors();
       }
     })
-   
+
   }
 
-  testAlert(){
+
+  editContractor(element: any) {
+    this.dialog.open(AddContractorComponent, {
+      width: '30%',
+      data: element
+    }).afterClosed().subscribe(val => {
+      if (val === 'update') {
+        this.getContractors()
+      }
+    })
+  }
+
+
+  testAlert() {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
@@ -73,27 +86,11 @@ export class ContractorListComponent implements OnInit {
     })
   }
 
-  // private _filter: string;
 
-  // get filter(){
-  //   return this._filter;
-  // }
 
-  // set filter(value: string){
-  //   this._filter = value;
-  //   this.writeLog(value);
-  // }
 
-  // writeLog(log: string){
-  //   console.log(log)
-  // }
-  
-  // filterData(filter: string){
-    
-  // }
-
-  
 
   ngOnInit(): void {
+    this.getContractors();
   }
 }
