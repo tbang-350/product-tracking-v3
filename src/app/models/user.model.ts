@@ -6,5 +6,7 @@ export interface User {
     userPassword?: string;
     email?: string;
     phoneNumber?: string;
-    // registeredDate?: Date;
+    employement?: boolean;
+    registeredAt?: Date;
+    updatedAt?: Date;
 }

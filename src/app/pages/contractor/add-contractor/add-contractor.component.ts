@@ -14,6 +14,7 @@ export class AddContractorComponent implements OnInit {
 
  contractorForm!: FormGroup;
  actionBtn: string = "Save";
+  // message: string = "";
 
  constructor(
   @Inject(MAT_DIALOG_DATA) public editData: any,
@@ -27,6 +28,7 @@ export class AddContractorComponent implements OnInit {
 
       if(this.editData){
         this.actionBtn = "Update";
+        this.contractorForm.controls['user_id'].setValue(this.editData.user_id);
         this.contractorForm.controls['firstName'].setValue(this.editData.firstName);
         this.contractorForm.controls['lastName'].setValue(this.editData.lastName);
         this.contractorForm.controls['userName'].setValue(this.editData.userName);
@@ -40,6 +42,7 @@ export class AddContractorComponent implements OnInit {
 
   FormConfiguration(){
     this.contractorForm = new FormGroup({
+      user_id: new FormControl(null),
       firstName: new FormControl(null,Validators.required),
       lastName: new FormControl(null,Validators.required),
       userName: new FormControl(null,Validators.required),
@@ -81,9 +84,10 @@ export class AddContractorComponent implements OnInit {
     }
   }
 
+
   updateContractor(){
     console.log(this.contractorForm.value)
-    this.userService.update(this.contractorForm.value).subscribe({
+    this.userService.updateContractor(this.contractorForm.value).subscribe({
       next: (res) => {
         Swal.fire({
           position: 'top-end',

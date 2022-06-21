@@ -1,1 +1,48 @@
-<p>add-employee works!</p>
+<h1 mat-dialog-title>Employee Form</h1>
+  <div mat-dialog-content >
+    <form [formGroup]="employeeForm">
+      <div class="example-container">
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstName" matInput >
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="lastName" matInput >
+          </mat-form-field>
+        </div>
+  
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>User name</mat-label>
+            <input formControlName="userName" matInput >
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input formControlName="userPassword" matInput >
+          </mat-form-field>
+        </div>
+  
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput >
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Phone number</mat-label>
+            <input formControlName="phoneNumber" matInput >
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div mat-dialog-actions >
+    <button mat-raised-button color="warn" mat-dialog-close>close</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="addEmployee()">{{actionBtn}}</button> 
+  </div>
+ 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -19,18 +19,30 @@ export class ContractorListComponent implements OnInit {
 
 
   data: any;
-  columnsToDisplay = ['firstName', 'lastName', 'userName', 'email', 'phoneNumber', 'action'];
+  columnsToDisplay = ['firstName', 'lastName', 'userName', 'email', 'phoneNumber', 'action', 'registeredAt'];
 
   // filteredData: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  @Input() viewMode = false;
+
+  @Input() currentUser: User = {
+    employement: false
+  };
+
+  message = '';
+
   constructor(
     private userservice: UserService,
     private dialog: MatDialog,
   ) {
     this.getContractors();
+  }
+
+  ngOnInit(): void {
+      this.getContractors();
   }
 
   getContractors() {
@@ -76,6 +88,17 @@ export class ContractorListComponent implements OnInit {
     })
   }
 
+  deleteContractor(id: number){
+    this.userservice.delete(id).subscribe({
+      next: (res) => {
+        alert("deleted successfully")
+        this.getContractors();
+      },error: () =>{
+        alert("something went wrong");
+      }
+    })
+  }
+
 
   testAlert() {
     Swal.fire({
@@ -88,9 +111,5 @@ export class ContractorListComponent implements OnInit {
 
 
 
-
-
-  ngOnInit(): void {
-    this.getContractors();
-  }
+  
 }

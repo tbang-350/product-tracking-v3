@@ -33,13 +33,16 @@ export class UserService {
     return this.http.post(baseUrl+"/registerEmployee",data);
   }
 
-  update(data: any): Observable<any> {
-    return this.http.put(baseUrl + "/updateUser", data);
+  updateContractor(data: any): Observable<any> {
+    return this.http.put(baseUrl + "/updateContractor/",data);
   }
 
-  delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+  updateEmployee(data: any): Observable<any> {
+    return this.http.put(baseUrl + "/updateEmployee/",data);
   }
-  
+
+  delete(id: number){
+    return this.http.delete<any>(baseUrl+"/deleteUser/"+id)
+  }
 
 }
