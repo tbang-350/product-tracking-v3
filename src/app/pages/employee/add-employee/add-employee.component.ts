@@ -35,6 +35,7 @@ export class AddEmployeeComponent implements OnInit {
         this.employeeForm.controls['userPassword'].setValue(this.editData.userPassword);
         this.employeeForm.controls['email'].setValue(this.editData.email);
         this.employeeForm.controls['phoneNumber'].setValue(this.editData.phoneNumber);
+        this.employeeForm.controls['registeredAt'].setValue(this.editData.registeredAt);
       }
   }
 
@@ -48,7 +49,8 @@ export class AddEmployeeComponent implements OnInit {
       userName: new FormControl(null,Validators.required),
       userPassword: new FormControl(null,Validators.required),
       email: new FormControl(null,Validators.required),
-      phoneNumber: new FormControl(null,Validators.required)
+      phoneNumber: new FormControl(null,Validators.required),
+      registeredAt: new FormControl(null)
     })
   }
 
@@ -62,7 +64,7 @@ export class AddEmployeeComponent implements OnInit {
             Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Contractor added',
+              title: 'Employee added',
               showConfirmButton: false,
               timer: 1500
             });

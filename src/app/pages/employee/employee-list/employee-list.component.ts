@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import {MatTable, MatTableDataSource} from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
@@ -41,7 +41,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.getEmployees();
+    this.getEmployees();
   }
 
   getEmployees() {
@@ -87,15 +87,35 @@ export class EmployeeListComponent implements OnInit {
     })
   }
 
-  deleteEmployee(id: number){
-    this.userservice.delete(id).subscribe({
-      next: (res) => {
-        alert("deleted successfully")
-        this.getEmployees();
-      },error: () =>{
-        alert("something went wrong");
+  deleteEmployee(id: number) {
+    Swal.fire({
+      title: 'Are you sure you want to delete user ?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.userservice.delete(id).subscribe({
+          next: (res) => {
+            this.getEmployees();
+          }, error: () => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Something went wrong',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
+        Swal.fire('Deleted', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Not Deleted', '', 'info')
       }
     })
+
   }
 
 

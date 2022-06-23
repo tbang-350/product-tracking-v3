@@ -35,6 +35,7 @@ export class AddContractorComponent implements OnInit {
         this.contractorForm.controls['userPassword'].setValue(this.editData.userPassword);
         this.contractorForm.controls['email'].setValue(this.editData.email);
         this.contractorForm.controls['phoneNumber'].setValue(this.editData.phoneNumber);
+        this.contractorForm.controls['registeredAt'].setValue(this.editData.registeredAt);
       }
   }
 
@@ -48,7 +49,8 @@ export class AddContractorComponent implements OnInit {
       userName: new FormControl(null,Validators.required),
       userPassword: new FormControl(null,Validators.required),
       email: new FormControl(null,Validators.required),
-      phoneNumber: new FormControl(null,Validators.required)
+      phoneNumber: new FormControl(null,Validators.required),
+      registeredAt: new FormControl(null)
     })
   }
 

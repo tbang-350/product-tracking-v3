@@ -89,24 +89,38 @@ export class ContractorListComponent implements OnInit {
   }
 
   deleteContractor(id: number){
-    this.userservice.delete(id).subscribe({
-      next: (res) => {
-        alert("deleted successfully")
-        this.getContractors();
-      },error: () =>{
-        alert("something went wrong");
+    Swal.fire({
+      title: 'Are you sure you want to delete user ?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancel`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.userservice.delete(id).subscribe({
+          next: (res) => {
+            this.getContractors();
+          }, error: () => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'Something went wrong',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
+        Swal.fire('Deleted', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Not Deleted', '', 'info')
       }
     })
   }
 
 
   testAlert() {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Something went wrong!',
-      footer: '<a href="">Why do I have this issue?</a>'
-    })
+    window.print();
   }
 
 
