@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { MetadataService } from 'src/app/service/metadata.service';
 
 import { environment } from 'src/environments/environment';
 
@@ -11,11 +12,18 @@ import { environment } from 'src/environments/environment';
 export class ContractorMapComponent implements AfterViewInit {
   
 
+  constructor(
+    private metadataService: MetadataService
+  ){
+
+  }
+
   map: any;
 
 
   ngAfterViewInit(): void {
     this.loadMap();
+    this.makeMarkers(this.map);
   }
 
   // ngOnInit(): void {
@@ -44,10 +52,39 @@ export class ContractorMapComponent implements AfterViewInit {
       popupAnchor: [13, 0],
     });
 
-    const marker = L.marker([-6.825344702954498, 39.22065605500218], { icon }).bindPopup('Angular Leaflet');
+    const marker = L.marker([-6.162432,39.437297], { icon }).bindPopup('Angular Leaflet');
     marker.addTo(this.map);
   }
 
 
+  makeMarkers(map: L.Map): void{
+    this.metadataService.getMetadata().subscribe((res:any) => {
+      console.log(res);
+      for(const c of res){
+        const lat = c.latitude;
+        const lon = c.longitude;
+        const icon = L.icon({
+          iconUrl: 'assets/images/marker-icon.png',
+          shadowUrl: 'assets/images/marker-shadow.png',
+          popupAnchor: [13, 0],
+        });
+    
+        const marker = L.marker([lat,lon], { icon }).bindPopup(c.name);
+        marker.addTo(this.map);
+      }
+
+      
+      // -6.713066120537668, 39.09004596517897
+
+      //-6.70877643431666, 38.96262719662648
+
+      // for(const c of res){
+      //   const lat = c.latitude;
+      //   const lon = c.longitude;
+      //   const marker = L.marker([lon,lat]).addTo(map);
+      //   marker.bindPopup('<p>${c.name}</p>').openPopup
+      // }
+    });
+  }
 
 }
