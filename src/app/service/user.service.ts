@@ -43,7 +43,19 @@ export class UserService {
   }
 
   delete(id: number){
-    return this.http.delete<any>(baseUrl+"/deleteUser/"+id)
+    return this.http.delete<any>(baseUrl+"/deleteUser/"+id);
+  }
+
+  countAll(): Observable<User[]>{
+    return this.http.get<User[]>(baseUrl+"/countAllUsers");
+  }
+
+  countCountractor(): Observable<User[]>{
+    return this.http.get<User[]>(baseUrl+"/countContractors")
+  }
+
+  countEmployee(): Observable<User[]>{
+    return this.http.get<User[]>(baseUrl+"/countEmployees")
   }
 
 }

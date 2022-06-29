@@ -21,15 +21,9 @@ export class MetadataService {
     return this.http.get<Metadata[]>(baseUrl+"/getMetadata");
   }
 
-  // makeMarkers(map: L.Map): void{
-  //   this.http.get<Metadata[]>(baseUrl+"/getMetadata").subscribe((res:any) => {
-  //     for(const c of res){
-  //       const lat = c.latitude;
-  //       const lon = c.longitude;
-  //       const marker = L.marker([lon,lat]).addTo(map);
-  //     }
-  //   });
-  // }
+  countMetadata(): Observable<Metadata[]> {
+    return this.http.get<Metadata[]>(baseUrl+"/countMetadata");
+  }
 
 
 
