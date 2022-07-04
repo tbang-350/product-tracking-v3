@@ -9,13 +9,19 @@ import { environment } from 'src/environments/environment';
   templateUrl: './contractor-map.component.html',
   styleUrls: ['./contractor-map.component.css']
 })
-export class ContractorMapComponent implements AfterViewInit {
+export class ContractorMapComponent implements OnInit,AfterViewInit {
   
 
   constructor(
     private metadataService: MetadataService
   ){
 
+  }
+  ngOnInit(): void {
+    this.loadMap();
+    this.makeMarkers(this.map);
+
+    // throw new Error('Method not implemented.');
   }
 
   map: any;
@@ -33,7 +39,7 @@ export class ContractorMapComponent implements AfterViewInit {
 
 
   private loadMap(): void {
-    this.map = L.map('map').setView([-6.8, 39.283333], 13);
+    this.map = L.map('map').setView([-6.133333, 39.316667], 10);
 
     const tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',

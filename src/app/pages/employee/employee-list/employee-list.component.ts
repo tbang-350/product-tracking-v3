@@ -67,10 +67,8 @@ export class EmployeeListComponent implements OnInit {
   addData() {
     this.dialog.open(AddEmployeeComponent, {
       width: '30%'
-    }).afterClosed().subscribe(val => {
-      if (val === 'save') {
+    }).afterClosed().subscribe(() => {
         this.getEmployees();
-      }
     })
 
   }
@@ -80,10 +78,8 @@ export class EmployeeListComponent implements OnInit {
     this.dialog.open(AddEmployeeComponent, {
       width: '30%',
       data: element
-    }).afterClosed().subscribe(val => {
-      if (val === 'update') {
+    }).afterClosed().subscribe(() => {
         this.getEmployees();
-      }
     })
   }
 

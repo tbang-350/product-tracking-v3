@@ -68,6 +68,7 @@ export class AddContractorComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500
             });
+            
             this.contractorForm.reset();
             this.dialogRef.close('save');
           },error:() =>{

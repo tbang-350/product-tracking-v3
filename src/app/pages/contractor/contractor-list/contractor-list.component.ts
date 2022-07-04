@@ -39,7 +39,7 @@ export class ContractorListComponent implements OnInit {
     private userservice: UserService,
     private dialog: MatDialog,
   ) {
-    this.getContractors();
+    // this.getContractors();
   }
 
   ngOnInit(): void {
@@ -69,10 +69,9 @@ export class ContractorListComponent implements OnInit {
   addData() {
     this.dialog.open(AddContractorComponent, {
       width: '30%'
-    }).afterClosed().subscribe(val => {
-      if (val === 'save') {
+    }).afterClosed().subscribe(() => {
+      console.log('meeee')
         this.getContractors();
-      }
     })
 
   }
@@ -82,10 +81,8 @@ export class ContractorListComponent implements OnInit {
     this.dialog.open(AddContractorComponent, {
       width: '30%',
       data: element
-    }).afterClosed().subscribe(val => {
-      if (val === 'update') {
+    }).afterClosed().subscribe(() => {
         this.getContractors()
-      }
     })
   }
 

@@ -28,7 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
-import { IonicModule } from '@ionic/angular';
+
 
 
 
@@ -67,7 +67,7 @@ import { IonicModule } from '@ionic/angular';
     MatCheckboxModule,
     MatIconModule,
     ReactiveFormsModule,
-    IonicModule.forRoot()
+    
     
   ],
   providers: [],
