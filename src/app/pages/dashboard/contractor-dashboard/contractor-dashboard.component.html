@@ -52,6 +52,67 @@
             </div>
             
         </div>
+
+
+        <mat-accordion>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="navbar-dark"
+                style="padding:10px ;">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h2 style="color: rgba(206,212,218);">Employees registered Monthly (chart)</h2>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <mat-card class=" mat-elevation-z8 dark-mode card">
+                    <section class="chart-area">
+                        <div class="chart-wrapper">
+                            <h1></h1>
+                            <canvas baseChart 
+                                [datasets]="lineChartData" 
+                                [labels]="lineChartLabels"
+                                [options]="lineChartOptions" 
+                                [colors]="lineChartColors" 
+                                [legend]="lineChartLegend"
+                                [chartType]="lineChartType" 
+                                [plugins]="lineChartPlugins">
+                            </canvas>
+                        </div>
+                    </section>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <br>
+        <mat-accordion>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="navbar-dark"
+                style="padding:10px ;">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h2 style="color: rgba(206,212,218);">Ads tracked Monthly (chart)</h2>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <mat-card class=" mat-elevation-z8 dark-mode card">
+                    <section class="chart-area">
+                        <div class="chart-wrapper">
+                            <h1></h1>
+                            <canvas baseChart 
+                                [datasets]="lineChartData2" 
+                                [labels]="lineChartLabels"
+                                [options]="lineChartOptions" 
+                                [colors]="lineChartColors" 
+                                [legend]="lineChartLegend"
+                                [chartType]="lineChartType" 
+                                [plugins]="lineChartPlugins">
+                            </canvas>
+                        </div>
+                    </section>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
+
         <!-- /.row -->
     </div>
     <!-- Main row -->

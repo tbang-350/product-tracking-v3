@@ -62,4 +62,6 @@ export class UserService {
     return this.http.get(baseUrl+"/getChartdata")
   }
 
+  
+
 }

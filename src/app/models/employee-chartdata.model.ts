@@ -1,4 +1,4 @@
-export class chartdata {
+export class employee_chartdata {
     jan: number;
     feb: number;
     mar: number;

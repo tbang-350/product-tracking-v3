@@ -25,6 +25,8 @@ export class MetadataService {
     return this.http.get<Metadata[]>(baseUrl+"/countMetadata");
   }
 
-
+  getMetaChartData(){
+    return this.http.get(baseUrl+"/getMetachartdata")
+  }
 
 }
