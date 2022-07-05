@@ -37,7 +37,7 @@ export class EmployeeListComponent implements OnInit {
     private userservice: UserService,
     private dialog: MatDialog,
   ) {
-    this.getEmployees();
+    // this.getEmployees();
   }
 
   ngOnInit(): void {
@@ -116,12 +116,7 @@ export class EmployeeListComponent implements OnInit {
 
 
   testAlert() {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Something went wrong!',
-      footer: '<a href="">Why do I have this issue?</a>'
-    })
+    this.ngOnInit();
   }
 
 }

@@ -58,4 +58,8 @@ export class UserService {
     return this.http.get<User[]>(baseUrl+"/countEmployees")
   }
 
+  getChartData(){
+    return this.http.get(baseUrl+"/getChartdata")
+  }
+
 }

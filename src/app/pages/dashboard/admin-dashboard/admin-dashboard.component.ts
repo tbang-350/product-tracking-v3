@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartDataSets } from 'chart.js';
+import { chartdata } from 'src/app/models/chardata.model';
 import { UserService } from 'src/app/service/user.service';
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -11,6 +14,7 @@ export class AdminDashboardComponent implements OnInit {
   allUsers: any;
   allContractors: any;
   allEmployees: any;
+  datachart = new chartdata();
 
   constructor(private userService: UserService) { }
 
@@ -41,5 +45,10 @@ export class AdminDashboardComponent implements OnInit {
       console.log(this.allEmployees)
     })
   }
+
+  lineChartData: ChartDataSets[] = [
+    {data: [this.datachart.jan,this.datachart.feb,this.datachart.mar,this.datachart.apr,this.datachart.may,]}
+  ];
+  // lineChartLabels: Label[]
 
 }

@@ -119,7 +119,7 @@ export class ContractorListComponent implements OnInit {
 
 
   openPDF(): void {
-    
+    this.ngOnInit();
   }
 
 
