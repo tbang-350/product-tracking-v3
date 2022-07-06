@@ -62,6 +62,8 @@ export class UserService {
     return this.http.get(baseUrl+"/getChartdata")
   }
 
-  
+  getContractorChartData(){
+    return this.http.get(baseUrl+"/getContractorChartdata")
+  }
 
 }

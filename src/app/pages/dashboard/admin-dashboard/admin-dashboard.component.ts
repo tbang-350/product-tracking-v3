@@ -5,6 +5,7 @@ import { ChartDataSets, ChartType } from 'chart.js';
 import { Colors, Label } from 'ng2-charts';
 import { meta_chartdata } from 'src/app/models/meta-chartdata.model';
 import { MetadataService } from 'src/app/service/metadata.service';
+import { contractor_chartdata } from 'src/app/models/contractor-chartdata.model';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -20,6 +21,7 @@ export class AdminDashboardComponent implements OnInit {
   allEmployees: any;
   datachart = new employee_chartdata();
   datachart2 = new meta_chartdata();
+  datachart3 = new contractor_chartdata();
   countMeta:any;
 
   constructor(private userService: UserService,
@@ -33,6 +35,7 @@ export class AdminDashboardComponent implements OnInit {
     this.countMetadata();
     this.getChartData();
     this.getMetaChartData();
+    this.getContractorChartData();
   }
 
   countAll(){
@@ -74,6 +77,11 @@ export class AdminDashboardComponent implements OnInit {
     this.datachart.jul,this.datachart.aug,this.datachart.sep,this.datachart.oct,this.datachart.nov,this.datachart.dec]}
   ];
 
+  lineChartData3: ChartDataSets[] = [
+    {data: [this.datachart.jan,this.datachart.feb,this.datachart.mar,this.datachart.apr,this.datachart.may,this.datachart.jun,
+    this.datachart.jul,this.datachart.aug,this.datachart.sep,this.datachart.oct,this.datachart.nov,this.datachart.dec]}
+  ];
+
   lineChartLabels: Label[] = ['January','February','March','April','May','June','July','August',
                                 'September','October','November','December'];
 
@@ -108,6 +116,17 @@ export class AdminDashboardComponent implements OnInit {
       console.log(res);
       this.datachart = new meta_chartdata(res.jan,res.feb,res.mar,res.apr,res.may,res.jun,res.jul,res.aug,res.sep,res.oct,res.nov,res.dec)
       this.lineChartData2 = [
+        {data: [this.datachart.jan,this.datachart.feb,this.datachart.mar,this.datachart.apr,this.datachart.may,this.datachart.jun,
+          this.datachart.jul,this.datachart.aug,this.datachart.sep,this.datachart.oct,this.datachart.nov,this.datachart.dec]}
+      ];
+    })
+  }
+
+  getContractorChartData(){
+    this.userService.getContractorChartData().subscribe((res:any)=>{
+      console.log(res);
+      this.datachart = new contractor_chartdata(res.jan,res.feb,res.mar,res.apr,res.may,res.jun,res.jul,res.aug,res.sep,res.oct,res.nov,res.dec)
+      this.lineChartData3 = [
         {data: [this.datachart.jan,this.datachart.feb,this.datachart.mar,this.datachart.apr,this.datachart.may,this.datachart.jun,
           this.datachart.jul,this.datachart.aug,this.datachart.sep,this.datachart.oct,this.datachart.nov,this.datachart.dec]}
       ];

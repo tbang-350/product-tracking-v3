@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType } from 'chart.js';
 import { Label, Colors } from 'ng2-charts';
+import { contractor_chartdata } from 'src/app/models/contractor-chartdata.model';
 import { employee_chartdata } from 'src/app/models/employee-chartdata.model';
 import { meta_chartdata } from 'src/app/models/meta-chartdata.model';
 import { MetadataService } from 'src/app/service/metadata.service';
@@ -19,6 +20,7 @@ export class ContractorDashboardComponent implements OnInit {
   allEmployees: any;
   datachart = new employee_chartdata();
   datachart2 = new meta_chartdata();
+  
 
   constructor(
     private userService: UserService,
@@ -57,6 +59,8 @@ export class ContractorDashboardComponent implements OnInit {
     {data: [this.datachart.jan,this.datachart.feb,this.datachart.mar,this.datachart.apr,this.datachart.may,this.datachart.jun,
     this.datachart.jul,this.datachart.aug,this.datachart.sep,this.datachart.oct,this.datachart.nov,this.datachart.dec]}
   ];
+
+  
 
   lineChartLabels: Label[] = ['January','February','March','April','May','June','July','August',
                                 'September','October','November','December'];
@@ -97,5 +101,7 @@ export class ContractorDashboardComponent implements OnInit {
       ];
     })
   }
+
+ 
 
 }
