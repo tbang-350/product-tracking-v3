@@ -22,6 +22,8 @@ export class ContractorDashboardComponent implements OnInit {
   datachart2 = new meta_chartdata();
   
 
+  
+
   constructor(
     private userService: UserService,
     private metadataService: MetadataService

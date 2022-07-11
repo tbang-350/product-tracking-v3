@@ -8,5 +8,4 @@ export interface User {
     phoneNumber?: string;
     employement?: boolean;
     registeredAt?: Date;
-    updatedAt?: Date;
 }

@@ -40,6 +40,7 @@ export class ContractorListComponent implements OnInit {
     private dialog: MatDialog,
   ) {
     // this.getContractors();
+    
   }
 
   ngOnInit(): void {
