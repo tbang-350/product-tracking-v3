@@ -24,4 +24,5 @@ export class contractor_chartdata{
         this.nov = nov;
         this.dec = dec;
     }
+    
 }

@@ -73,6 +73,7 @@ export class UserService {
     return this.http.get(baseUrl+"/getContractorChartdata")
   }
 
+<<<<<<< HEAD
   print(){
     this.router.navigateByUrl("contractorReport").then(()=>{
       window.print();
@@ -87,4 +88,8 @@ export class UserService {
     })
   }
 
+=======
+
+  
+>>>>>>> afe0f6734b29598b00f58388f67231d5352de1db
 }

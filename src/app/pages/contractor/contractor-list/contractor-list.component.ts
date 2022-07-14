@@ -41,6 +41,7 @@ export class ContractorListComponent implements OnInit {
     private router: Router
   ) {
     // this.getContractors();
+    
   }
 
   ngOnInit(): void {
