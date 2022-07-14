@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 
@@ -10,7 +11,13 @@ const baseUrl = "http://localhost:9090"
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { 
+  data:any;
+  data2: any;
+
+  constructor(
+    private http: HttpClient,
+    private router: Router
+    ) { 
 
   }
 
@@ -64,6 +71,20 @@ export class UserService {
 
   getContractorChartData(){
     return this.http.get(baseUrl+"/getContractorChartdata")
+  }
+
+  print(){
+    this.router.navigateByUrl("contractorReport").then(()=>{
+      window.print();
+      this.router.navigateByUrl("contractor-list")
+    })
+  }
+
+  printEmployee(){
+    this.router.navigateByUrl("employeeReport").then(()=>{
+      window.print();
+      this.router.navigateByUrl("employee-list")
+    })
   }
 
 }

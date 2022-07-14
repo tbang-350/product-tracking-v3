@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AnyForUntypedForms } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
@@ -16,12 +18,13 @@ import { AddEmployeeComponent } from '../add-employee/add-employee.component';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-
+  printdata2 : any;
   data: any;
   columnsToDisplay = ['firstName', 'lastName', 'userName', 'email', 'phoneNumber', 'action', 'registeredAt'];
 
   // filteredData: any;
 
+  
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -36,6 +39,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private userservice: UserService,
     private dialog: MatDialog,
+    private router : Router
   ) {
     // this.getEmployees();
   }
@@ -48,6 +52,7 @@ export class EmployeeListComponent implements OnInit {
     this.userservice.getEmployees().subscribe(x => {
       // this.filteredData = x;
       this.data = new MatTableDataSource<User>(x);
+      this.printdata2 = x ;
       this.data.sort = this.sort;
       this.data.paginator = this.paginator;
 
@@ -115,8 +120,13 @@ export class EmployeeListComponent implements OnInit {
   }
 
 
-  testAlert() {
+  refresh() {
     this.ngOnInit();
+  }
+
+  printPDF(){
+    this.userservice.data2 = this.printdata2;
+    this.router.navigateByUrl('/employeeReport');
   }
 
 }

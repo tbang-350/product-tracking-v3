@@ -10,6 +10,8 @@ import { AddEmployeeComponent } from './pages/employee/add-employee/add-employee
 import { EmployeeListComponent } from './pages/employee/employee-list/employee-list.component';
 import { EmployeeMapComponent } from './pages/employee/employee-map/employee-map.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ContractorReportComponent } from './report/contractor-report/contractor-report.component';
+import { EmployeeReportComponent } from './report/employee-report/employee-report.component';
 
 const routes: Routes = [
   {
@@ -24,9 +26,10 @@ const routes: Routes = [
       { path: 'employee-list', component: EmployeeListComponent },
       { path: 'employee-map', component: EmployeeMapComponent },
       { path: 'add-employee', component: AddEmployeeComponent }
-
     ]
-  }
+  },
+  {path: 'contractorReport', component:ContractorReportComponent},
+  {path: 'employeeReport', component: EmployeeReportComponent}
 ];
 
 @NgModule({

@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/service/user.service';
 import { AddContractorComponent } from '../add-contractor/add-contractor.component';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 
@@ -17,8 +18,7 @@ import Swal from 'sweetalert2';
 })
 export class ContractorListComponent implements OnInit {
 
-
-
+  printdata: any
   data: any;
   columnsToDisplay = ['firstName', 'lastName', 'userName', 'email', 'phoneNumber', 'action', 'registeredAt'];
 
@@ -38,6 +38,7 @@ export class ContractorListComponent implements OnInit {
   constructor(
     private userservice: UserService,
     private dialog: MatDialog,
+    private router: Router
   ) {
     // this.getContractors();
   }
@@ -50,6 +51,8 @@ export class ContractorListComponent implements OnInit {
     this.userservice.getContractors().subscribe(x => {
       // this.filteredData = x;
       this.data = new MatTableDataSource<User>(x);
+      this.printdata = x
+      console.log(this.printdata)
       this.data.sort = this.sort;
       this.data.paginator = this.paginator;
 
@@ -70,7 +73,6 @@ export class ContractorListComponent implements OnInit {
     this.dialog.open(AddContractorComponent, {
       width: '30%'
     }).afterClosed().subscribe(() => {
-      console.log('meeee')
         this.getContractors();
     })
 
@@ -118,8 +120,13 @@ export class ContractorListComponent implements OnInit {
 
 
 
-  openPDF(): void {
+  refresh(): void {
     this.ngOnInit();
+  }
+
+  printPDF(){
+    this.userservice.data = this.printdata;
+    this.router.navigateByUrl("/contractorReport")
   }
 
 

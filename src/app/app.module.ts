@@ -30,6 +30,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { ChartsModule } from 'ng2-charts';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ContractorReportComponent } from './report/contractor-report/contractor-report.component';
+import { EmployeeReportComponent } from './report/employee-report/employee-report.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     AdminDashboardComponent,
     ContractorDashboardComponent,
     HomeComponent,
+    ContractorReportComponent,
+    EmployeeReportComponent,
   ],
   imports: [
     BrowserModule,
