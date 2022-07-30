@@ -81,6 +81,7 @@ export class UserService {
     return this.http.get(baseUrl+"/getContractorChartdata")
   }
 
+
   print(){
     this.router.navigateByUrl("contractorReport").then(()=>{
       window.print();
@@ -94,6 +95,7 @@ export class UserService {
       this.router.navigateByUrl("main/employee-list")
     })
   }
+
 
   // login(userName:String , userPassword:String){
   //   return this.http.get(baseUrl+"/login/user/"+userName+"/pass/"+userPassword)
@@ -122,5 +124,9 @@ export class UserService {
       }
     }
   }
+
+
+
+  
 
 }
