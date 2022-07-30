@@ -35,7 +35,7 @@ import { EmployeeReportComponent } from './report/employee-report/employee-repor
 import { LoginComponent } from './pages/login/login.component';
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { AuthGuard } from './guard/auth.guard';
-import { AuthInterceptor } from './guard/auth.interceptor';
+import { AuthInterceptor, authInterceptorProviders } from './guard/auth.interceptor';
 import { UserService } from './service/user.service';
 import {JwtModule} from '@auth0/angular-jwt';
 
@@ -89,6 +89,7 @@ import {JwtModule} from '@auth0/angular-jwt';
     //   multi:true
     // },
     // UserService
+    authInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
