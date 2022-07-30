@@ -18,7 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,6 +32,12 @@ import { ChartsModule } from 'ng2-charts';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { ContractorReportComponent } from './report/contractor-report/contractor-report.component';
 import { EmployeeReportComponent } from './report/employee-report/employee-report.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
+import { AuthGuard } from './guard/auth.guard';
+import { AuthInterceptor } from './guard/auth.interceptor';
+import { UserService } from './service/user.service';
+import {JwtModule} from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -48,6 +54,8 @@ import { EmployeeReportComponent } from './report/employee-report/employee-repor
     HomeComponent,
     ContractorReportComponent,
     EmployeeReportComponent,
+    LoginComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,10 +77,19 @@ import { EmployeeReportComponent } from './report/employee-report/employee-repor
     MatIconModule,
     ReactiveFormsModule,
     ChartsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    // JwtModule.forRoot({config:{tokenGetter:()=>localStorage.getItem("jwtToken")}})
 
   ],
-  providers: [],
+  providers: [
+    // AuthGuard,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi:true
+    // },
+    // UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

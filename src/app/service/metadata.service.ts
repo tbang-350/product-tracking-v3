@@ -5,7 +5,7 @@ import { Metadata } from '../models/metadata.model';
 import * as L from 'leaflet';
 
 
-const baseUrl = "http://localhost:9090"
+const baseUrl = "http://localhost:1919/meta"
 
 @Injectable({
   providedIn: 'root'
