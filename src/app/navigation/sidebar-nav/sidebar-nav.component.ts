@@ -10,14 +10,20 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class SidebarNavComponent implements OnInit {
 
+  displayname:any
+username:any
   constructor(
+    
     private userAuthService: UserAuthService,
     private router: Router,
     public userService: UserService
   ) { }
 
   ngOnInit(): void {
+    this.displayname=localStorage.getItem('username')
   }
+
+  
 
   public isLoggedIn() {
     return this.userAuthService.isLoggedIn();

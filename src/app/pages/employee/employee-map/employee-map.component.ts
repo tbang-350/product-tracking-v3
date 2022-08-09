@@ -38,7 +38,7 @@ export class EmployeeMapComponent implements OnInit, AfterViewInit {
 
 
   private loadMap(): void {
-    this.map = L.map('map').setView([-6.133333, 39.316667], 10);
+    this.map = L.map('map').setView([-2.75, 32.75], 10);
 
     const tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -57,8 +57,8 @@ export class EmployeeMapComponent implements OnInit, AfterViewInit {
       popupAnchor: [13, 0],
     });
 
-    const marker = L.marker([-6.162432, 39.437297], { icon }).bindPopup('Angular Leaflet');
-    marker.addTo(this.map);
+    // const marker = L.marker([-6.162432, 39.437297], { icon }).bindPopup('Angular Leaflet');
+    // marker.addTo(this.map);
   }
 
   makeMarkers(map: L.Map): void {

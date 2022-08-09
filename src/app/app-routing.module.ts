@@ -17,6 +17,7 @@ import { ContractorReportComponent } from './report/contractor-report/contractor
 import { EmployeeReportComponent } from './report/employee-report/employee-report.component';
 
 const routes: Routes = [
+  {path:'',redirectTo:'/login',pathMatch:'full'},
   {path: 'login' ,component:LoginComponent},
   {
     path: 'main', component: SidebarNavComponent,
@@ -35,6 +36,7 @@ const routes: Routes = [
   },
   {path: 'contractorReport', component:ContractorReportComponent},
   {path: 'employeeReport', component: EmployeeReportComponent}
+
 ];
 
 @NgModule({

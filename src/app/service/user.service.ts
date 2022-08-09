@@ -20,6 +20,7 @@ export class UserService {
 
   data:any;
   data2: any;
+  user: any
 
   constructor(
     private http: HttpClient,
